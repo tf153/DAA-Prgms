@@ -2,8 +2,7 @@
 using namespace std;
 bool subset_sum(int arr[], int sum, int n)
 {
-    bool t[n + 1][sum + 1];
-
+    int t[n + 1][sum + 1];
     for (int i = 0; i <= n; i++)
         t[i][0] = true;
     for (int i = 1; i <= sum; i++)
@@ -14,9 +13,7 @@ bool subset_sum(int arr[], int sum, int n)
         for (int j = 1; j <= sum; j++)
         {
             if (arr[i - 1] <= j)
-            {
                 t[i][j] = t[i - 1][j - arr[i - 1]] || t[i - 1][j];
-            }
             else
                 t[i][j] = t[i - 1][j];
         }
@@ -31,11 +28,20 @@ int main()
     int arr[n];
     for (int i = 0; i < n; i++)
         cin >> arr[i];
-    int sum;
-    cin >> sum;
-    if (subset_sum(arr, sum, n))
-        cout << "Subset is possible";
+
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += arr[i];
+
+    if (sum & 1)
+    {
+        cout << "Partition not possible";
+        return 0;
+    }
+
+    if (subset_sum(arr, sum / 2, n))
+        cout << "Partition is possible";
     else
-        cout << "Subset not possible";
+        cout << "Partition not possible";
     return 0;
 }
