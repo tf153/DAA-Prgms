@@ -16,7 +16,9 @@ int max_val(int wt[], int val[], int w, int n)
                 t[i][j] = max(val[i - 1] + t[i - 1][j - wt[i - 1]], t[i - 1][j]);
             else
                 t[i][j] = t[i - 1][j];
+            cout << t[i][j] << "\t";
         }
+        cout << endl;
     }
 
     return t[n][w];
