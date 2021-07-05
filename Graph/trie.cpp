@@ -79,12 +79,12 @@ public:
             if (!temp->isWord)
             {
                 temp->child[str[0] - 'a'] = nullptr;
-                return true;
+                return false;
             }
             else
             {
                 temp->child[str[0] = 'a'] = nullptr;
-                return false;
+                return true;
             }
         }
         return false;
@@ -130,7 +130,7 @@ int main()
             }
             else
             {
-                cout << "Word does not exist";
+                cout << "Word does not exist\n";
             }
             break;
         default:
